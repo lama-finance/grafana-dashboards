@@ -1496,29 +1496,8 @@
           "type": "custom"
         },
         {
-          "current": {
-            "selected": false,
-            "text": "prod",
-            "value": "prod"
-          },
           "hide": 2,
-          "includeAll": false,
-          "multi": false,
-          "name": "cluster",
-          "options": [
-            {
-              "selected": true,
-              "text": "prod",
-              "value": "prod"
-            }
-          ],
-          "query": "prod",
-          "skipUrlSync": false,
-          "type": "custom"
-        },
-        {
-          "hide": 2,
-          "name": "service_name",
+          "name": "app",
           "query": "SERVICE_NAME",
           "skipUrlSync": false,
           "type": "constant"
