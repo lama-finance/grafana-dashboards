@@ -101,7 +101,6 @@
                 "expr": "container_memory_working_set_bytes{container!=\"POD\",container!=\"\",pod=~\"$service_name.*\", cluster=\"$cluster\"}",
                 "interval": "",
                 "legendFormat": "{{pod}} - Usage",
-                "queryType": "randomWalk",
                 "refId": "A"
               }
             ],
@@ -204,7 +203,6 @@
                 "expr": "sum(increase(container_cpu_cfs_throttled_periods_total{pod=~\"$service_name.*\", container!=\"\"}[5m])) by (container, pod) /sum(increase(container_cpu_cfs_periods_total{pod=~\"$service_name.*\", container!=\"\"}[5m])) by (container, pod)",
                 "interval": "",
                 "legendFormat": "{{container}} in {{pod}}",
-                "queryType": "randomWalk",
                 "refId": "A"
               }
             ],
@@ -304,7 +302,6 @@
                 "expr": "sum(rate(container_cpu_usage_seconds_total{pod=~\"$service_name.*\", image!=\"\", container!=\"POD\", cluster=\"$cluster\"}[5m])) by (pod, container)",
                 "interval": "",
                 "legendFormat": "{{container}} in {{pod}}",
-                "queryType": "randomWalk",
                 "refId": "A"
               }
             ],
