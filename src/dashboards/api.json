@@ -102,7 +102,7 @@
                   "uid": "grafanacloud-prom"
                 },
                 "exemplar": true,
-                "expr": "container_memory_working_set_bytes{container!=\"POD\",container!=\"\",pod=~\"$service_name.*\", cluster=\"$cluster\"}",
+                "expr": "container_memory_working_set_bytes{container!=\"POD\",container!=\"\",pod=~\"$app.*\"}",
                 "interval": "",
                 "legendFormat": "{{pod}} - Usage",
                 "refId": "A"
@@ -208,7 +208,7 @@
                   "uid": "grafanacloud-prom"
                 },
                 "exemplar": true,
-                "expr": "sum(increase(container_cpu_cfs_throttled_periods_total{pod=~\"$service_name.*\", container!=\"\"}[5m])) by (container, pod) /sum(increase(container_cpu_cfs_periods_total{pod=~\"$service_name.*\", container!=\"\"}[5m])) by (container, pod)",
+                "expr": "sum(increase(container_cpu_cfs_throttled_periods_total{pod=~\"$app.*\", container!=\"\"}[5m])) by (container, pod) /sum(increase(container_cpu_cfs_periods_total{pod=~\"$app.*\", container!=\"\"}[5m])) by (container, pod)",
                 "interval": "",
                 "legendFormat": "{{container}} in {{pod}}",
                 "refId": "A"
@@ -311,7 +311,7 @@
                   "uid": "grafanacloud-prom"
                 },
                 "exemplar": true,
-                "expr": "sum(rate(container_cpu_usage_seconds_total{pod=~\"$service_name.*\", image!=\"\", container!=\"POD\", cluster=\"$cluster\"}[5m])) by (pod, container)",
+                "expr": "sum(rate(container_cpu_usage_seconds_total{pod=~\"$app.*\", image!=\"\", container!=\"POD\"}[5m])) by (pod, container)",
                 "interval": "",
                 "legendFormat": "{{container}} in {{pod}}",
                 "refId": "A"
@@ -398,7 +398,7 @@
                   "uid": "grafanacloud-prom"
                 },
                 "exemplar": true,
-                "expr": "sum(increase(nginx_ingress_controller_requests{ingress=~\"$service_name\", status!~\"(2|3).*\"}[2m])) by (status)",
+                "expr": "sum(increase(nginx_ingress_controller_requests{ingress=~\"$app\", status!~\"(2|3).*\"}[2m])) by (status)",
                 "interval": "",
                 "legendFormat": "{{status}}",
                 "refId": "A"
@@ -482,14 +482,14 @@
                   "uid": "grafanacloud-prom"
                 },
                 "exemplar": true,
-                "expr": "count(kube_pod_info{pod=~\"$service_name.*\",pod!~\".*kafka.*\"})",
+                "expr": "count(kube_pod_info{pod=~\"$app.*\",pod!~\".*kafka.*\"})",
                 "interval": "",
                 "legendFormat": "Main Pods",
                 "refId": "A"
               },
               {
                 "exemplar": true,
-                "expr": "count(kube_pod_info{pod=~\"$service_name.*\",pod=~\".*kafka.*\"})",
+                "expr": "count(kube_pod_info{pod=~\"$app.*\",pod=~\".*kafka.*\"})",
                 "hide": false,
                 "interval": "",
                 "legendFormat": "Kafka Pods",
@@ -577,7 +577,7 @@
                   "uid": "grafanacloud-prom"
                 },
                 "exemplar": true,
-                "expr": "sum(increase(kube_pod_container_status_restarts_total{pod=~\"$service_name-.*\"}[2m])) by (container, pod)",
+                "expr": "sum(increase(kube_pod_container_status_restarts_total{pod=~\"$app-.*\"}[2m])) by (container, pod)",
                 "interval": "",
                 "legendFormat": "{{container}} in {{pod}}",
                 "refId": "A"
@@ -681,7 +681,7 @@
               "uid": "grafanacloud-prom"
             },
             "exemplar": true,
-            "expr": "sum(increase(http_request_duration_seconds_count{app=\"$service_name\", cluster=\"$cluster\", path!~\".*openapi.*\", status_code!~\"(4|5)..\"}[5m])) by (method, path, status_code)",
+            "expr": "sum(increase(http_request_duration_seconds_count{app=\"$app\", path!~\".*openapi.*\", status_code!~\"(4|5)..\"}[5m])) by (method, path, status_code)",
             "interval": "",
             "legendFormat": "{{method}}  {{path}} {{status_code}}",
             "refId": "A"
@@ -768,7 +768,7 @@
               "uid": "grafanacloud-prom"
             },
             "exemplar": true,
-            "expr": "histogram_quantile($quantile, sum(rate(http_request_duration_seconds_bucket{app=\"$service_name\", status_code!~\"(4|5)..\", cluster=\"$cluster\"}[5m])) by (status_code, path, method, le))",
+            "expr": "histogram_quantile($quantile, sum(rate(http_request_duration_seconds_bucket{app=\"$app\", status_code!~\"(4|5)..\"}[5m])) by (status_code, path, method, le))",
             "interval": "",
             "legendFormat": "{{method}}  {{path}} {{status_code}}",
             "refId": "A"
@@ -855,7 +855,7 @@
               "uid": "grafanacloud-prom"
             },
             "exemplar": true,
-            "expr": "sum(increase(http_request_duration_seconds_count{app=\"$service_name\", cluster=\"$cluster\", status_code=~\"(4|5)..\"}[5m])) by (method, path, status_code)",
+            "expr": "sum(increase(http_request_duration_seconds_count{app=\"$app\", status_code=~\"(4|5)..\"}[5m])) by (method, path, status_code)",
             "interval": "",
             "legendFormat": "{{method}}  {{path}} {{status_code}}",
             "refId": "A"
@@ -955,7 +955,7 @@
               "uid": "grafanacloud-prom"
             },
             "exemplar": true,
-            "expr": "sum(increase(mongo_count{app=\"$service_name\", cluster=\"$cluster\", result=\"success\"}[5m])) by (method) ",
+            "expr": "sum(increase(mongo_count{app=\"$app\", result=\"success\"}[5m])) by (method) ",
             "interval": "",
             "legendFormat": "{{method}}",
             "refId": "A"
@@ -1042,7 +1042,7 @@
               "uid": "grafanacloud-prom"
             },
             "exemplar": true,
-            "expr": "histogram_quantile($quantile, sum(rate(mongo_execution_time_bucket{app=\"$service_name\", cluster=\"$cluster\", result=\"success\"}[5m])) by (method, le))",
+            "expr": "histogram_quantile($quantile, sum(rate(mongo_execution_time_bucket{app=\"$app\", result=\"success\"}[5m])) by (method, le))",
             "interval": "",
             "legendFormat": "{{method}} ",
             "refId": "A"
@@ -1129,7 +1129,7 @@
               "uid": "grafanacloud-prom"
             },
             "exemplar": true,
-            "expr": "sum(increase(mongo_count{app=\"$service_name\", cluster=\"$cluster\", result=\"error\"}[5m])) by (method) ",
+            "expr": "sum(increase(mongo_count{app=\"$app\", result=\"error\"}[5m])) by (method) ",
             "interval": "",
             "legendFormat": "{{method}}  {{path}} {{status_code}}",
             "refId": "A"
@@ -1227,7 +1227,7 @@
               "uid": "grafanacloud-prom"
             },
             "exemplar": true,
-            "expr": "sum(increase(producer_count{app=\"$service_name\", result=\"success\"}[5m])) by (method)",
+            "expr": "sum(increase(producer_count{app=\"$app\", result=\"success\"}[5m])) by (method)",
             "interval": "",
             "legendFormat": "{{method}}",
             "refId": "A"
@@ -1312,7 +1312,7 @@
               "uid": "grafanacloud-prom"
             },
             "exemplar": true,
-            "expr": "histogram_quantile($quantile, sum(rate(producer_execution_time_bucket{app=\"$service_name\"}[5m])) by (le, method))",
+            "expr": "histogram_quantile($quantile, sum(rate(producer_execution_time_bucket{app=\"$app\"}[5m])) by (le, method))",
             "instant": false,
             "interval": "",
             "legendFormat": "{{method}}",
@@ -1398,7 +1398,7 @@
               "uid": "grafanacloud-prom"
             },
             "exemplar": true,
-            "expr": "sum(increase(producer_count{app=\"$service_name\", result=\"error\"}[5m])) by (method)",
+            "expr": "sum(increase(producer_count{app=\"$app\", result=\"error\"}[5m])) by (method)",
             "interval": "",
             "legendFormat": "{{method}}",
             "refId": "A"
