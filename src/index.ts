@@ -11,7 +11,7 @@ import fs from 'fs';
     }
 
     const dashboardFile = `${type === 'worker' ? 'worker' : 'api'}.json`;
-    const dashboard = JSON.parse(fs.readFileSync(`./dashboards/${dashboardFile}`, 'utf-8'));
+    const dashboard = JSON.parse(fs.readFileSync(`./src/dashboards/${dashboardFile}`, 'utf-8'));
 
     await got(host, {method: 'POST',
         headers: {
