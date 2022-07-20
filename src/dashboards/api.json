@@ -689,7 +689,7 @@
         ],
         "thresholds": [],
         "timeRegions": [],
-        "title": "HTTP Success Count",
+        "title": "HTTP Requests / Minute",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -768,7 +768,7 @@
               "uid": "grafanacloud-prom"
             },
             "exemplar": true,
-            "expr": "histogram_quantile($quantile, sum(rate(http_request_duration_seconds_bucket{app=\"$app\", status_code!~\"(4|5)..\"}[5m])) by (status_code, path, method, le))",
+            "expr": "histogram_quantile($quantile, sum(rate(http_request_duration_seconds_bucket{app=\"$app\"}[5m])) by (status_code, path, method, le))",
             "interval": "",
             "legendFormat": "{{method}}  {{path}} {{status_code}}",
             "refId": "A"
