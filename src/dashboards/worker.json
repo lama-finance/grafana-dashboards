@@ -23,8 +23,7 @@
     "fiscalYearStartMonth": 0,
     "graphTooltip": 1,
     "iteration": 1644769302304,
-    "links": [
-    ],
+    "links": [],
     "liveNow": false,
     "panels": [
       {
@@ -98,8 +97,12 @@
             "steppedLine": false,
             "targets": [
               {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
                 "exemplar": true,
-                "expr": "container_memory_working_set_bytes{container!=\"POD\",container!=\"\",pod=~\"$service_name.*\"}",
+                "expr": "container_memory_working_set_bytes{container!=\"POD\",container!=\"\",pod=~\"$app.*\"}",
                 "interval": "",
                 "legendFormat": "{{pod}} - Usage",
                 "queryType": "randomWalk",
@@ -201,8 +204,12 @@
             "steppedLine": false,
             "targets": [
               {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
                 "exemplar": true,
-                "expr": "sum(increase(container_cpu_cfs_throttled_periods_total{pod=~\"$service_name.*\", container!=\"\"}[5m])) by (container, pod) /sum(increase(container_cpu_cfs_periods_total{pod=~\"$service_name.*\", container!=\"\"}[5m])) by (container, pod)",
+                "expr": "sum(increase(container_cpu_cfs_throttled_periods_total{pod=~\"$app.*\", container!=\"\"}[5m])) by (container, pod) /sum(increase(container_cpu_cfs_periods_total{pod=~\"$app.*\", container!=\"\"}[5m])) by (container, pod)",
                 "interval": "",
                 "legendFormat": "{{container}} in {{pod}}",
                 "queryType": "randomWalk",
@@ -301,8 +308,12 @@
             "steppedLine": false,
             "targets": [
               {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
                 "exemplar": true,
-                "expr": "sum(rate(container_cpu_usage_seconds_total{pod=~\"$service_name.*\", image!=\"\", container!=\"POD\"}[5m])) by (pod, container)",
+                "expr": "sum(rate(container_cpu_usage_seconds_total{pod=~\"$app.*\", image!=\"\", container!=\"POD\"}[5m])) by (pod, container)",
                 "interval": "",
                 "legendFormat": "{{container}} in {{pod}}",
                 "queryType": "randomWalk",
@@ -385,8 +396,12 @@
             "steppedLine": false,
             "targets": [
               {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
                 "exemplar": true,
-                "expr": "sum(increase(nginx_ingress_controller_requests{ingress=~\"$service_name\", status!~\"(2).*\"}[2m])) by (status)",
+                "expr": "sum(increase(nginx_ingress_controller_requests{ingress=~\"$app\", status!~\"(2).*\"}[2m])) by (status)",
                 "interval": "",
                 "legendFormat": "{{status}}",
                 "refId": "A"
@@ -468,23 +483,35 @@
             "steppedLine": false,
             "targets": [
               {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
                 "exemplar": true,
-                "expr": "count(kube_pod_info{pod=~\"$service_name.*\",pod!~\".*kafka.*\"})",
+                "expr": "count(kube_pod_info{pod=~\"$app.*\",pod!~\".*kafka.*\"})",
                 "interval": "",
                 "legendFormat": "main",
                 "refId": "A"
               },
               {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
                 "exemplar": true,
-                "expr": "count(kube_pod_info{pod=~\"$service_name.*\",pod=~\".*kafka-consumer.*\"})",
+                "expr": "count(kube_pod_info{pod=~\"$app.*\",pod=~\".*kafka-consumer.*\"})",
                 "hide": false,
                 "interval": "",
                 "legendFormat": "consumer",
                 "refId": "B"
               },
               {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
                 "exemplar": true,
-                "expr": "count(kube_pod_info{pod=~\"$service_name.*\",pod=~\".*kafka-producer.*\"})",
+                "expr": "count(kube_pod_info{pod=~\"$app.*\",pod=~\".*kafka-producer.*\"})",
                 "hide": false,
                 "interval": "",
                 "legendFormat": "producer",
@@ -565,8 +592,12 @@
             "steppedLine": false,
             "targets": [
               {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
                 "exemplar": true,
-                "expr": "sum(increase(kube_pod_container_status_restarts_total{pod=~\"$service_name-.*\"}[2m])) by (container, pod)",
+                "expr": "sum(increase(kube_pod_container_status_restarts_total{pod=~\"$app-.*\"}[2m])) by (container, pod)",
                 "interval": "",
                 "legendFormat": "{{container}} in {{pod}}",
                 "refId": "A"
@@ -663,8 +694,12 @@
         "steppedLine": false,
         "targets": [
           {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
             "exemplar": true,
-            "expr": "sum(increase(process_batch_execution_time_count{app=\"$service_name-kafka-consumer\"}[5m]))",
+            "expr": "sum(increase(process_batch_execution_time_count{app=\"$app-kafka-consumer\"}[5m]))",
             "interval": "",
             "legendFormat": "process",
             "refId": "A"
@@ -744,8 +779,12 @@
         "steppedLine": false,
         "targets": [
           {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
             "exemplar": true,
-            "expr": "histogram_quantile($quantile, sum(rate(process_batch_execution_time_bucket{app=\"$service_name-kafka-consumer\"}[5m])) by (le))",
+            "expr": "histogram_quantile($quantile, sum(rate(process_batch_execution_time_bucket{app=\"$app-kafka-consumer\"}[5m])) by (le))",
             "instant": false,
             "interval": "",
             "legendFormat": "process",
@@ -826,8 +865,12 @@
         "steppedLine": false,
         "targets": [
           {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
             "exemplar": true,
-            "expr": "histogram_quantile($quantile, sum(rate(message_latency_bucket{app=\"$service_name-kafka-consumer\"}[5m])) by (le, topic))",
+            "expr": "histogram_quantile($quantile, sum(rate(message_latency_bucket{app=\"$app-kafka-consumer\"}[5m])) by (le, topic))",
             "interval": "",
             "legendFormat": "{{topic}} latnecy",
             "refId": "A"
@@ -909,8 +952,12 @@
         "steppedLine": false,
         "targets": [
           {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
             "exemplar": true,
-            "expr": "sum(increase(target_execution_rerty{app=\"$service_name-kafka-consumer\"}[5m])) by (attempt)",
+            "expr": "sum(increase(target_execution_rerty{app=\"$app-kafka-consumer\"}[5m])) by (attempt)",
             "interval": "",
             "legendFormat": "attempt {{attempt}}",
             "refId": "A"
@@ -992,8 +1039,12 @@
         "steppedLine": false,
         "targets": [
           {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
             "exemplar": true,
-            "expr": "sum(increase(retry_produced{app=\"$service_name-kafka-consumer\"}[5m]))",
+            "expr": "sum(increase(retry_produced{app=\"$app-kafka-consumer\"}[5m]))",
             "interval": "",
             "legendFormat": "retry topic",
             "refId": "A"
@@ -1075,8 +1126,12 @@
         "steppedLine": false,
         "targets": [
           {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
             "exemplar": true,
-            "expr": "sum(increase(dead_letter_produced{app=\"$service_name-kafka-consumer\"}[5m]))",
+            "expr": "sum(increase(dead_letter_produced{app=\"$app-kafka-consumer\"}[5m]))",
             "interval": "",
             "legendFormat": "dead letter",
             "refId": "A"
@@ -1179,10 +1234,7 @@
         "id": 38,
         "options": {
           "legend": {
-            "calcs": [
-              "last",
-              "max"
-            ],
+            "calcs": ["last", "max"],
             "displayMode": "table",
             "placement": "bottom",
             "sortBy": "Max",
@@ -1199,7 +1251,7 @@
               "type": "prometheus",
               "uid": "grafanacloud-prom"
             },
-            "expr": "sum(kafka_consumergroup_group_topic_sum_lag{cluster=\"prod\",group=\"$service_name\"}) by (topic)",
+            "expr": "sum(kafka_consumergroup_group_topic_sum_lag{group=\"$app\"}) by (topic)",
             "hide": false,
             "refId": "A"
           }
@@ -1262,15 +1314,23 @@
         "steppedLine": false,
         "targets": [
           {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
             "exemplar": true,
-            "expr": "sum(increase(http_request_duration_seconds_count{app=\"$service_name\", status_code!~\"(4|5)..\"}[5m])) by (method, path, status_code)",
+            "expr": "sum(increase(http_request_duration_seconds_count{app=\"$app\", status_code!~\"(4|5)..\"}[5m])) by (method, path, status_code)",
             "interval": "",
             "legendFormat": "count",
             "refId": "A"
           },
           {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
             "exemplar": true,
-            "expr": "sum(rate(http_request_duration_seconds_count{app=\"$service_name\", status_code!~\"(4|5)..\"}[5m])) by (method, path, status_code)",
+            "expr": "sum(rate(http_request_duration_seconds_count{app=\"$app\"}[5m])) by (method, path, status_code)",
             "hide": false,
             "interval": "",
             "legendFormat": "rate",
@@ -1279,7 +1339,7 @@
         ],
         "thresholds": [],
         "timeRegions": [],
-        "title": "HTTP Success Count",
+        "title": "HTTP Requests Count / Minute",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -1351,8 +1411,12 @@
         "steppedLine": false,
         "targets": [
           {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
             "exemplar": true,
-            "expr": "histogram_quantile($quantile, sum(rate(http_request_duration_seconds_bucket{app=\"$service_name\", status_code=~\"2.*\"}[5m])) by (status_code, path, method, le))",
+            "expr": "histogram_quantile($quantile, sum(rate(http_request_duration_seconds_bucket{app=\"$app\"}[5m])) by (status_code, path, method, le))",
             "interval": "",
             "legendFormat": "",
             "refId": "A"
@@ -1434,15 +1498,23 @@
         "steppedLine": false,
         "targets": [
           {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
             "exemplar": true,
-            "expr": "sum(increase(http_request_duration_seconds_count{app=\"$service_name\", status_code!~\"(2)..\"}[5m])) by (method, path, status_code)",
+            "expr": "sum(increase(http_request_duration_seconds_count{app=\"$app\", status_code!~\"(2)..\"}[5m])) by (method, path, status_code)",
             "interval": "",
             "legendFormat": "count {{status_code}}",
             "refId": "A"
           },
           {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
             "exemplar": true,
-            "expr": "sum(rate(http_request_duration_seconds_count{app=\"$service_name\", status_code!~\"(2)..\"}[5m])) by (method, path, status_code)",
+            "expr": "sum(rate(http_request_duration_seconds_count{app=\"$app\", status_code!~\"(2)..\"}[5m])) by (method, path, status_code)",
             "hide": false,
             "interval": "",
             "legendFormat": "rate {{status_code}}",
@@ -1536,8 +1608,12 @@
         "steppedLine": false,
         "targets": [
           {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
             "exemplar": true,
-            "expr": "sum(increase(station_api_count{app=\"$service_name\", result=\"success\"}[5m])) by (method)",
+            "expr": "sum(increase(station_api_count{app=\"$app\", result=\"success\"}[5m])) by (method)",
             "interval": "",
             "legendFormat": "station-api {{method}} ",
             "refId": "A"
@@ -1565,87 +1641,6 @@
           {
             "$$hashKey": "object:508",
             "format": "short",
-            "logBase": 1,
-            "show": true
-          },
-          {
-            "$$hashKey": "object:509",
-            "format": "short",
-            "logBase": 1,
-            "show": true
-          }
-        ],
-        "yaxis": {
-          "align": false
-        }
-      },
-      {
-        "aliasColors": {},
-        "bars": true,
-        "dashLength": 10,
-        "dashes": false,
-        "fill": 1,
-        "fillGradient": 0,
-        "gridPos": {
-          "h": 10,
-          "w": 8,
-          "x": 8,
-          "y": 33
-        },
-        "hiddenSeries": false,
-        "id": 10,
-        "legend": {
-          "alignAsTable": true,
-          "avg": true,
-          "current": false,
-          "max": true,
-          "min": true,
-          "show": true,
-          "total": false,
-          "values": true
-        },
-        "lines": false,
-        "linewidth": 1,
-        "nullPointMode": "null",
-        "options": {
-          "alertThreshold": true
-        },
-        "percentage": false,
-        "pluginVersion": "8.3.6",
-        "pointradius": 2,
-        "points": false,
-        "renderer": "flot",
-        "seriesOverrides": [],
-        "spaceLength": 10,
-        "stack": false,
-        "steppedLine": false,
-        "targets": [
-          {
-            "exemplar": true,
-            "expr": "histogram_quantile($quantile, sum(rate(station_api_execution_time_bucket{app=\"$service_name\", result=\"success\"}[5m])) by (method, le))",
-            "interval": "",
-            "legendFormat": "station-api {{method}}",
-            "refId": "A"
-          }
-        ],
-        "thresholds": [],
-        "timeRegions": [],
-        "title": "HTTP Execution Time",
-        "tooltip": {
-          "shared": true,
-          "sort": 0,
-          "value_type": "individual"
-        },
-        "type": "graph",
-        "xaxis": {
-          "mode": "time",
-          "show": true,
-          "values": []
-        },
-        "yaxes": [
-          {
-            "$$hashKey": "object:508",
-            "format": "s",
             "logBase": 1,
             "show": true
           },
@@ -1704,8 +1699,12 @@
         "steppedLine": false,
         "targets": [
           {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
             "exemplar": true,
-            "expr": "sum(increase(station_api_count{app=\"$service_name\", result=\"error\"}[5m])) by (method)",
+            "expr": "sum(increase(station_api_count{app=\"$app\", result=\"error\"}[5m])) by (method)",
             "interval": "",
             "legendFormat": "station-api {{method}}",
             "refId": "A"
@@ -1752,7 +1751,7 @@
       "list": [
         {
           "hide": 2,
-          "name": "service_name",
+          "name": "app",
           "query": "SERVICE_NAME",
           "skipUrlSync": false,
           "type": "constant"
