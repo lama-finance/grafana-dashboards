@@ -488,7 +488,7 @@
                   "uid": "grafanacloud-prom"
                 },
                 "exemplar": true,
-                "expr": "count(kube_pod_info{pod=~\"$app.*\",pod!~\".*kafka.*\"})",
+                "expr": "count(kube_pod_info{pod=~\"$app.*\",pod!~\".*dafka.*\"})",
                 "interval": "",
                 "legendFormat": "main",
                 "refId": "A"
@@ -511,7 +511,7 @@
                   "uid": "grafanacloud-prom"
                 },
                 "exemplar": true,
-                "expr": "count(kube_pod_info{pod=~\"$app.*\",pod=~\".*kafka-producer.*\"})",
+                "expr": "count(kube_pod_info{pod=~\"$app.*\",pod=~\".*dafka-producer.*\"})",
                 "hide": false,
                 "interval": "",
                 "legendFormat": "producer",
@@ -1174,7 +1174,7 @@
           "type": "prometheus",
           "uid": "grafanacloud-prom"
         },
-        "description": "This shows the Kafka consumer lag for each topic that is consumed by this service",
+        "description": "This shows the dafka consumer lag for each topic that is consumed by this service",
         "fieldConfig": {
           "defaults": {
             "color": {
