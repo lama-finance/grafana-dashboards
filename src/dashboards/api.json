@@ -4,7 +4,7 @@
       "list": [
         {
           "builtIn": 1,
-          "datasource": "grafanacloud-lamaai-prom",
+          "datasource": "-- Grafana --",
           "enable": true,
           "hide": true,
           "iconColor": "rgba(0, 211, 255, 1)",
@@ -43,7 +43,7 @@
             "dashes": false,
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-lamaai-prom"
+              "uid": "grafanacloud-prom"
             },
             "fill": 1,
             "fillGradient": 0,
@@ -144,7 +144,7 @@
             "dashes": false,
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-lamaai-prom"
+              "uid": "grafanacloud-prom"
             },
             "fill": 1,
             "fillGradient": 0,
@@ -247,7 +247,7 @@
             "dashes": false,
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-lamaai-prom"
+              "uid": "grafanacloud-prom"
             },
             "fill": 1,
             "fillGradient": 0,
