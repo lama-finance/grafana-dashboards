@@ -43,7 +43,7 @@
             "dashes": false,
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-prom"
+              "uid": "grafanacloud-lamaai-prom"
             },
             "fill": 1,
             "fillGradient": 0,
@@ -144,7 +144,7 @@
             "dashes": false,
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-prom"
+              "uid": "grafanacloud-lamaai-prom"
             },
             "fill": 1,
             "fillGradient": 0,
@@ -247,7 +247,7 @@
             "dashes": false,
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-prom"
+              "uid": "grafanacloud-lamaai-prom"
             },
             "fill": 1,
             "fillGradient": 0,
