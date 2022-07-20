@@ -499,7 +499,7 @@
                   "uid": "grafanacloud-prom"
                 },
                 "exemplar": true,
-                "expr": "count(kube_pod_info{pod=~\"$app.*\",pod=~\".*kafka-consumer.*\"})",
+                "expr": "count(kube_pod_info{pod=~\"$app.*\",pod=~\".*dafka-consumer.*\"})",
                 "hide": false,
                 "interval": "",
                 "legendFormat": "consumer",
@@ -699,7 +699,7 @@
               "uid": "grafanacloud-prom"
             },
             "exemplar": true,
-            "expr": "sum(increase(process_batch_execution_time_count{app=\"$app-kafka-consumer\"}[5m]))",
+            "expr": "sum(increase(process_batch_execution_time_count{app=\"$app-dafka-consumer\"}[5m]))",
             "interval": "",
             "legendFormat": "process",
             "refId": "A"
@@ -784,7 +784,7 @@
               "uid": "grafanacloud-prom"
             },
             "exemplar": true,
-            "expr": "histogram_quantile($quantile, sum(rate(process_batch_execution_time_bucket{app=\"$app-kafka-consumer\"}[5m])) by (le))",
+            "expr": "histogram_quantile($quantile, sum(rate(process_batch_execution_time_bucket{app=\"$app-dafka-consumer\"}[5m])) by (le))",
             "instant": false,
             "interval": "",
             "legendFormat": "process",
@@ -870,7 +870,7 @@
               "uid": "grafanacloud-prom"
             },
             "exemplar": true,
-            "expr": "histogram_quantile($quantile, sum(rate(message_latency_bucket{app=\"$app-kafka-consumer\"}[5m])) by (le, topic))",
+            "expr": "histogram_quantile($quantile, sum(rate(message_latency_bucket{app=\"$app-dafka-consumer\"}[5m])) by (le, topic))",
             "interval": "",
             "legendFormat": "{{topic}} latnecy",
             "refId": "A"
@@ -957,7 +957,7 @@
               "uid": "grafanacloud-prom"
             },
             "exemplar": true,
-            "expr": "sum(increase(target_execution_rerty{app=\"$app-kafka-consumer\"}[5m])) by (attempt)",
+            "expr": "sum(increase(target_execution_rerty{app=\"$app-dafka-consumer\"}[5m])) by (attempt)",
             "interval": "",
             "legendFormat": "attempt {{attempt}}",
             "refId": "A"
@@ -1044,7 +1044,7 @@
               "uid": "grafanacloud-prom"
             },
             "exemplar": true,
-            "expr": "sum(increase(retry_produced{app=\"$app-kafka-consumer\"}[5m]))",
+            "expr": "sum(increase(retry_produced{app=\"$app-dafka-consumer\"}[5m]))",
             "interval": "",
             "legendFormat": "retry topic",
             "refId": "A"
@@ -1131,7 +1131,7 @@
               "uid": "grafanacloud-prom"
             },
             "exemplar": true,
-            "expr": "sum(increase(dead_letter_produced{app=\"$app-kafka-consumer\"}[5m]))",
+            "expr": "sum(increase(dead_letter_produced{app=\"$app-dafka-consumer\"}[5m]))",
             "interval": "",
             "legendFormat": "dead letter",
             "refId": "A"
