@@ -43,7 +43,7 @@
             "dashes": false,
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-prom"
+              "uid": "RuP111T4z"
             },
             "fill": 1,
             "fillGradient": 0,
@@ -99,7 +99,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "grafanacloud-prom"
+                  "uid": "RuP111T4z"
                 },
                 "exemplar": true,
                 "expr": "container_memory_working_set_bytes{container!=\"POD\",container!=\"\",pod=~\"$app.*\"}",
@@ -148,7 +148,7 @@
             "dashes": false,
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-prom"
+              "uid": "RuP111T4z"
             },
             "fill": 1,
             "fillGradient": 0,
@@ -206,7 +206,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "grafanacloud-prom"
+                  "uid": "RuP111T4z"
                 },
                 "exemplar": true,
                 "expr": "sum(increase(container_cpu_cfs_throttled_periods_total{pod=~\"$app.*\", container!=\"\"}[5m])) by (container, pod) /sum(increase(container_cpu_cfs_periods_total{pod=~\"$app.*\", container!=\"\"}[5m])) by (container, pod)",
@@ -255,7 +255,7 @@
             "dashes": false,
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-prom"
+              "uid": "RuP111T4z"
             },
             "fill": 1,
             "fillGradient": 0,
@@ -310,7 +310,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "grafanacloud-prom"
+                  "uid": "RuP111T4z"
                 },
                 "exemplar": true,
                 "expr": "sum(rate(container_cpu_usage_seconds_total{pod=~\"$app.*\", image!=\"\", container!=\"POD\"}[5m])) by (pod, container)",
@@ -398,7 +398,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "grafanacloud-prom"
+                  "uid": "RuP111T4z"
                 },
                 "exemplar": true,
                 "expr": "sum(increase(nginx_ingress_controller_requests{ingress=~\"$app\", status!~\"(2).*\"}[2m])) by (status)",
@@ -485,7 +485,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "grafanacloud-prom"
+                  "uid": "RuP111T4z"
                 },
                 "exemplar": true,
                 "expr": "count(kube_pod_info{pod=~\"$app.*\",pod!~\".*dafka.*\"})",
@@ -496,7 +496,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "grafanacloud-prom"
+                  "uid": "RuP111T4z"
                 },
                 "exemplar": true,
                 "expr": "count(kube_pod_info{pod=~\"$app.*\",pod=~\".*dafka-consumer.*\"})",
@@ -508,7 +508,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "grafanacloud-prom"
+                  "uid": "RuP111T4z"
                 },
                 "exemplar": true,
                 "expr": "count(kube_pod_info{pod=~\"$app.*\",pod=~\".*dafka-producer.*\"})",
@@ -594,7 +594,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "grafanacloud-prom"
+                  "uid": "RuP111T4z"
                 },
                 "exemplar": true,
                 "expr": "sum(increase(kube_pod_container_status_restarts_total{pod=~\"$app-.*\"}[2m])) by (container, pod)",
@@ -696,7 +696,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-prom"
+              "uid": "RuP111T4z"
             },
             "exemplar": true,
             "expr": "sum(increase(process_batch_execution_time_count{app=\"$app-dafka-consumer\"}[5m]))",
@@ -781,7 +781,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-prom"
+              "uid": "RuP111T4z"
             },
             "exemplar": true,
             "expr": "histogram_quantile($quantile, sum(rate(process_batch_execution_time_bucket{app=\"$app-dafka-consumer\"}[5m])) by (le))",
@@ -867,7 +867,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-prom"
+              "uid": "RuP111T4z"
             },
             "exemplar": true,
             "expr": "histogram_quantile($quantile, sum(rate(message_latency_bucket{app=\"$app-dafka-consumer\"}[5m])) by (le, topic))",
@@ -954,7 +954,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-prom"
+              "uid": "RuP111T4z"
             },
             "exemplar": true,
             "expr": "sum(increase(target_execution_rerty{app=\"$app-dafka-consumer\"}[5m])) by (attempt)",
@@ -1041,7 +1041,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-prom"
+              "uid": "RuP111T4z"
             },
             "exemplar": true,
             "expr": "sum(increase(retry_produced{app=\"$app-dafka-consumer\"}[5m]))",
@@ -1128,7 +1128,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-prom"
+              "uid": "RuP111T4z"
             },
             "exemplar": true,
             "expr": "sum(increase(dead_letter_produced{app=\"$app-dafka-consumer\"}[5m]))",
@@ -1172,7 +1172,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "grafanacloud-prom"
+          "uid": "RuP111T4z"
         },
         "description": "This shows the dafka consumer lag for each topic that is consumed by this service",
         "fieldConfig": {
@@ -1249,7 +1249,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-prom"
+              "uid": "RuP111T4z"
             },
             "expr": "sum(kafka_consumergroup_group_topic_sum_lag{group=\"$app\"}) by (topic)",
             "hide": false,
@@ -1316,7 +1316,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-prom"
+              "uid": "RuP111T4z"
             },
             "exemplar": true,
             "expr": "sum(increase(http_request_duration_seconds_count{app=\"$app\", status_code!~\"(4|5)..\"}[5m])) by (method, path, status_code)",
@@ -1327,7 +1327,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-prom"
+              "uid": "RuP111T4z"
             },
             "exemplar": true,
             "expr": "sum(rate(http_request_duration_seconds_count{app=\"$app\"}[5m])) by (method, path, status_code)",
@@ -1413,7 +1413,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-prom"
+              "uid": "RuP111T4z"
             },
             "exemplar": true,
             "expr": "histogram_quantile($quantile, sum(rate(http_request_duration_seconds_bucket{app=\"$app\"}[5m])) by (status_code, path, method, le))",
@@ -1500,7 +1500,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-prom"
+              "uid": "RuP111T4z"
             },
             "exemplar": true,
             "expr": "sum(increase(http_request_duration_seconds_count{app=\"$app\", status_code!~\"(2)..\"}[5m])) by (method, path, status_code)",
@@ -1511,7 +1511,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-prom"
+              "uid": "RuP111T4z"
             },
             "exemplar": true,
             "expr": "sum(rate(http_request_duration_seconds_count{app=\"$app\", status_code!~\"(2)..\"}[5m])) by (method, path, status_code)",
@@ -1610,7 +1610,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-prom"
+              "uid": "RuP111T4z"
             },
             "exemplar": true,
             "expr": "sum(increase(station_api_count{app=\"$app\", result=\"success\"}[5m])) by (method)",
@@ -1701,7 +1701,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "grafanacloud-prom"
+              "uid": "RuP111T4z"
             },
             "exemplar": true,
             "expr": "sum(increase(station_api_count{app=\"$app\", result=\"error\"}[5m])) by (method)",
