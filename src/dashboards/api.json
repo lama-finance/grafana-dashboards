@@ -1,4 +1,5 @@
 {
+  "dashboard": { 
   "annotations": {
     "list": [
       {
@@ -2568,4 +2569,5 @@
   "uid": "GCN_50RVz",
   "version": 31,
   "weekStart": ""
+}
 }
