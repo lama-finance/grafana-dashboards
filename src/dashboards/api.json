@@ -2551,7 +2551,7 @@
       {
         "hide": 2,
         "name": "app",
-        "query": "application-service",
+        "query": "SERVICE_NAME",
         "skipUrlSync": false,
         "type": "constant"
       }
@@ -2564,7 +2564,7 @@
   "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {},
   "timezone": "",
-  "title": "application-service",
+  "title": "SERVICE_NAME",
   "uid": "GCN_50RVz",
   "version": 31,
   "weekStart": ""
